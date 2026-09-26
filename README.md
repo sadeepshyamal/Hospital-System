@@ -1,89 +1,74 @@
 # Smart Hospital & Resource Allocation System
 
-This project is an educational C scaffold for the CSC 1012 Introduction to Computer Programming assignment. It is intentionally simple, modular, and beginner-friendly.
+An educational C scaffold for the CSC 1012 individual assignment. The project is intentionally being developed in stages; this repository is not a completed or ready-to-submit system.
 
-## Project goal
+## Objective
 
-The program simulates a small hospital management system with:
-- doctor specialty lookup tables
-- hospital ward lookup tables
-- a 2D bed occupancy matrix
-- patient parallel arrays
-- menu-driven console interaction
-- future billing, search, sorting, and report features
+Build a menu-driven hospital application using fundamental C concepts: lookup arrays, a bed matrix, patient parallel arrays, functions, input validation, file handling, searching, sorting, and calculations. Current implementation status is recorded in [the requirement map](docs/requirements-map.md).
 
-## Important note
+## Current features
 
-This is not a complete final submission. It is a staged educational scaffold built to match the assignment requirements progressively.
+- Official specialty and ward lookup tables
+- Bed occupancy matrix initialization and display, limited to each ward's actual capacity
+- Specialty/ward lookup functions
+- Patient parallel-array storage initialization
+- Basic menu loop with invalid numeric input handling
+
+Patient registration, allocation, billing, search, sorting, reports, and persistence are not implemented yet. The menu entries for those features are placeholders.
 
 ## Project structure
 
-- src/main.c - menu loop and program flow
-- src/hospital.h - shared constants and global hospital definitions
-- src/hospital.c - specialty tables, ward data, bed matrix helpers
-- src/patient.h - patient parallel-array declarations
-- src/patient.c - patient array initialization and registration-related scaffold
+- `src/main.c`: menu and top-level program flow
+- `src/hospital.h`, `src/hospital.c`: hospital constants, lookup arrays, and bed display/lookup helpers
+- `src/patient.h`, `src/patient.c`: patient-array scaffold and initialization example
+- `docs/requirements-map.md`: requirement status and planned owning files
+- `docs/report-outline.md`: report outline limited to current implementation
+- `tests/test-cases.md`: starter checks; results remain for the student to run and record
+- `main.c`, `1.c`: earlier standalone prototypes; not included in the modular build
 
 ## Technologies
 
-- C programming language
-- GCC compiler or compatible C compiler
-- Standard C libraries only
+- C11 and standard C library only
+- GCC or another compatible C compiler
+- Code::Blocks project configuration is set to build the modular sources under `src/`
 
-## Compile (Linux/macOS)
+## Build and run
 
-```bash
-gcc src/main.c src/hospital.c src/patient.c -o smart_hospital
+From the repository root with GCC:
+
+```text
+gcc -std=c11 -Wall -Wextra -pedantic src/main.c src/hospital.c src/patient.c -o smart_hospital
 ./smart_hospital
 ```
 
-## Compile (Windows with GCC)
+On Windows with MinGW GCC:
 
-```bash
-gcc src/main.c src/hospital.c src/patient.c -o smart_hospital.exe
+```text
+gcc -std=c11 -Wall -Wextra -pedantic src/main.c src/hospital.c src/patient.c -o smart_hospital.exe
 smart_hospital.exe
 ```
 
-## Current scaffold contents
+The source files are listed explicitly so the build does not accidentally compile one of the old root-level prototypes.
 
-This version includes:
-- the official specialty values from the assignment
-- the official ward values from the assignment
-- a 4 x 20 bed occupancy matrix
-- a menu-driven interface
-- display functions for specialties, wards, and bed status
-- patient parallel arrays for the next stage of development
+## Data structures and algorithms
 
-## What is being implemented next
+- Parallel arrays are chosen instead of structs to match the assignment's introductory-C focus.
+- `bedOccupancy[NUM_WARDS][MAX_BEDS]` represents availability (`0`) or occupation (`1`). Display uses `wardCapacity` so nonexistent beds are not shown.
+- Specialty and ward details are stored in constant lookup arrays in `src/hospital.c`.
+- No patient sorting, searching, or billing algorithms have been implemented yet.
 
-The project is being built in stages:
-1. constants and lookup tables
-2. bed occupancy matrix
-3. patient parallel arrays
-4. patient registration and validation
-5. waiting time and billing formulas
-6. bed allocation and assignment
-7. sorting and searching
-8. performance reports
-9. file persistence and records
+## File handling
 
-## Assignment-aligned design choice
+Bed persistence and permanent patient billing records are planned but not implemented. The future design calls for loading/saving `beds_status.txt` and appending records to `patient_records.txt`.
 
-This project deliberately uses parallel arrays instead of structs because the assignment explicitly encourages them for first-year students.
+## Testing
 
-Each patient uses the same index across all arrays, such as:
-- patientId[i]
-- patientName[i]
-- patientAge[i]
-- urgencyLevel[i]
-- specialtyIdPatient[i]
-- wardIdPatient[i]
+See [tests/test-cases.md](tests/test-cases.md). Tests are not claimed as passed until the student runs them and records the actual result.
 
-This keeps the design easy to explain and easier to debug.
+## Assumptions to confirm
 
-## Assumptions
-
-- MAX_PATIENTS is set to a realistic beginner-friendly limit.
-- Beds are initialised as available at the start of the program.
-- This is an educational scaffold, not a completed submission.
+- `MAX_PATIENTS` is currently 100.
+- The bed matrix initializer marks all 20 slots in each row available; display and later allocation must still respect the ward's actual capacity.
+- The root-level C files are historical prototypes; the modular `src/` sources are the intended application.
+- Remaining requirements will be implemented and reviewed incrementally by the student.
 - Future features such as file handling and billing will be added in later phases.
