@@ -4,7 +4,7 @@ An educational C scaffold for the CSC 1012 individual assignment. The project is
 
 ## Objective
 
-Build a menu-driven hospital application using fundamental C concepts: lookup arrays, a bed matrix, patient parallel arrays, functions, input validation, file handling, searching, sorting, and calculations. Current implementation status is recorded in [the requirement map](docs/requirements-map.md).
+Build a menu-driven hospital application using fundamental C concepts: look up arrays, a bed matrix, patient parallel arrays, functions, input validation, file handling, searching, sorting, and calculations. Current implementation status is recorded in [the requirement map](docs/requirements-map.md).
 
 ## Current features
 
